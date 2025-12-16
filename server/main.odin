@@ -2,9 +2,11 @@ package server
 
 import "core:fmt"
 import "core:net"
+import "core:thread"
 
 main :: proc()
 {
-    fmt.println("Hello, World!");
-}
+    // begin server
 
+    // handle clients
+}

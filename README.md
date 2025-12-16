@@ -6,7 +6,6 @@ DIL will not attempt to motivate you, notify you, or improve your life. It will 
 
 ### Features
 ---
-- Communication via REST API
 - Account Login
 - Offline CLI
 - Optional Server/Client Sync

@@ -13,6 +13,11 @@ main :: proc()
     t.clear(&scr, .Everything);
     t.blit(&scr);
 
+    state := State {
+        cli_state = .SYNC,
+        connection_status = .OFFLINE
+    }
+
     for {
         defer t.blit(&scr);
 
@@ -31,7 +36,15 @@ main :: proc()
         dim := t.get_window_size(&scr)
         draw_box(&scr, 0, 0, dim.w, dim.h)
 
-        t.move_cursor(&scr, 1, 1);
+        t.move_cursor(&scr, 0, 1);
         t.write(&scr, "Do it Later - Task CLI");
+
+        #partial switch state.cli_state
+        {
+            case .SETUP:
+            {
+
+            }
+        }
     }
 }

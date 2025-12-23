@@ -1,6 +1,6 @@
-[package]
-name = "DIL"
-version = "0.1.0"
-edition = "2024"
+[workspace]
+resolver = "3"
+members = ["client", "server"]
 
-[dependencies]
+[workspace.dependencies]
+http = "1.4.0"

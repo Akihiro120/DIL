@@ -1,0 +1,6 @@
+[submodule "vendor/nlohmann"]
+	path = vendor/nlohmann
+	url = https://github.com/nlohmann/json.git
+[submodule "vendor/ftxuiw"]
+	path = vendor/ftxuiw
+	url = https://github.com/ArthurSonzogni/FTXUI.git

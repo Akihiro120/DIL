@@ -1,0 +1,9 @@
+BasedOnStyle: LLVM
+IndentWidth: 4
+BreakBeforeBraces: Custom
+BraceWrapping:
+  AfterFunction: true
+  BeforeLambdaBody: true
+  AfterControlStatement: Always
+LambdaBodyIndentation: OuterScope
+AllowShortLambdasOnASingleLine: false

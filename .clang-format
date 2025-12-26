@@ -1,9 +1,16 @@
 BasedOnStyle: LLVM
 IndentWidth: 4
-BreakBeforeBraces: Custom
-BraceWrapping:
-  AfterFunction: true
-  BeforeLambdaBody: true
-  AfterControlStatement: Always
-LambdaBodyIndentation: OuterScope
+BreakBeforeBraces: Allman
+LambdaBodyIndentation: Signature
 AllowShortLambdasOnASingleLine: false
+FixNamespaceComments: false
+NamespaceIndentation: All
+AccessModifierOffset: -4
+IndentAccessModifiers: false
+AllowShortFunctionsOnASingleLine: None
+ContinuationIndentWidth: 4
+AlignOperands: DontAlign
+BinPackArguments: false
+BinPackParameters: false
+ColumnLimit: 120
+BreakBeforeBinaryOperators: All

@@ -1,3 +1,4 @@
+#include "json.hpp"
 #include <cstdlib>
 #include <filesystem>
 #include <fstream>
@@ -9,6 +10,7 @@
 #include <iostream>
 
 using namespace ftxui;
+using json = nlohmann::json;
 namespace fs = std::filesystem;
 
 int main()
@@ -23,44 +25,45 @@ int main()
 
     fs::path fullPath = fs::path(homeDir) / ".config/DIL/tasks.json";
     std::ifstream dataFile(fullPath);
+    json data;
     if (dataFile)
     {
         std::cout << "Task file found: Loading Tasks" << std::endl;
-    }
-    else {
+        data = json::parse(dataFile);
+    } else
+    {
         std::cout << "Task file not found" << std::endl;
     }
 
     auto taskPanel = Renderer([&]
-        {
-            return text("Task");
-        });
+    {
+        return text("Task");
+    });
     taskPanel |= flex;
     taskPanel |= borderHeavy;
 
     auto editPanel = Renderer([&]
-        {
-            return text("Edit");
-        });
+    {
+        return text("Edit");
+    });
     editPanel |= flex;
     editPanel |= borderHeavy;
 
-    auto component = Renderer(
-        [&]
-        {
-            return hbox({taskPanel->Render(), editPanel->Render()});
-        });
+    auto component = Renderer([&]
+    {
+        return hbox({taskPanel->Render(), editPanel->Render()});
+    });
 
     bool running = true;
     component |= CatchEvent([&](Event event) -> bool
+    {
+        if (event == Event::Character('q'))
         {
-            if (event == Event::Character('q'))
-            {
-                running = false;
-                return true;
-            }
-            return false;
-        });
+            running = false;
+            return true;
+        }
+        return false;
+    });
 
     Loop loop(&screen, component);
     while (!loop.HasQuitted() && running)

@@ -4,20 +4,11 @@ project(DIL)
 set (CMAKE_CXX_STANDARD 20)
 
 set (CLIENT_SOURCES 
-
 )
 
 include(FetchContent)
 
 add_executable(${PROJECT_NAME} main.cpp ${CLIENT_SOURCES})
-
-FetchContent_Declare(
-    nlohmann
-    SOURCE_DIR ${CMAKE_SOURCE_DIR}/vendor/nlohmann
-)
-FetchContent_MakeAvailable(nlohmann)
-
-target_link_libraries(${PROJECT_NAME} PRIVATE nlohmann)
 
 FetchContent_Declare(
     ftxui

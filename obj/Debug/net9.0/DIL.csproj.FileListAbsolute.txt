@@ -1,0 +1,14 @@
+/Users/akihiro/Desktop/DIL/bin/Debug/net9.0/DIL
+/Users/akihiro/Desktop/DIL/bin/Debug/net9.0/DIL.deps.json
+/Users/akihiro/Desktop/DIL/bin/Debug/net9.0/DIL.runtimeconfig.json
+/Users/akihiro/Desktop/DIL/bin/Debug/net9.0/DIL.dll
+/Users/akihiro/Desktop/DIL/bin/Debug/net9.0/DIL.pdb
+/Users/akihiro/Desktop/DIL/obj/Debug/net9.0/DIL.GeneratedMSBuildEditorConfig.editorconfig
+/Users/akihiro/Desktop/DIL/obj/Debug/net9.0/DIL.AssemblyInfoInputs.cache
+/Users/akihiro/Desktop/DIL/obj/Debug/net9.0/DIL.AssemblyInfo.cs
+/Users/akihiro/Desktop/DIL/obj/Debug/net9.0/DIL.csproj.CoreCompileInputs.cache
+/Users/akihiro/Desktop/DIL/obj/Debug/net9.0/DIL.dll
+/Users/akihiro/Desktop/DIL/obj/Debug/net9.0/refint/DIL.dll
+/Users/akihiro/Desktop/DIL/obj/Debug/net9.0/DIL.pdb
+/Users/akihiro/Desktop/DIL/obj/Debug/net9.0/DIL.genruntimeconfig.cache
+/Users/akihiro/Desktop/DIL/obj/Debug/net9.0/ref/DIL.dll

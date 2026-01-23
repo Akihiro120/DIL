@@ -3,6 +3,7 @@ use std::default;
 use crate::{panel_state::PanelState, task::Task};
 use ratatui::{
     style::{Color, Modifier, Style, Stylize},
+    text::{Line, Span},
     widgets::{Block, List, ListItem, ListState, Paragraph, StatefulWidget, Widget},
 };
 
@@ -31,6 +32,14 @@ impl TaskPanelState {
 
         style
     }
+
+    pub fn increment_selection(&mut self) {
+        self.list_state.select_next();
+    }
+
+    pub fn decrement_selection(&mut self) {
+        self.list_state.select_previous();
+    }
 }
 
 pub struct TaskPanel<'a> {
@@ -58,6 +67,15 @@ impl<'a> StatefulWidget for TaskPanel<'a> {
             .map(|task| ListItem::new(task.name.as_str()))
             .collect();
 
+        let keybinds = Line::from(vec![
+            Span::styled(" [a] ", Style::default().yellow().bold()),
+            Span::raw("Add "),
+            Span::styled(" [r] ", Style::default().yellow().bold()),
+            Span::raw("Remove "),
+            Span::styled(" [e] ", Style::default().yellow().bold()),
+            Span::raw("Edit "),
+        ]);
+
         let style = state.get_panel_style();
         let content = List::new(items)
             .style(Style::default().gray().dim())
@@ -72,6 +90,7 @@ impl<'a> StatefulWidget for TaskPanel<'a> {
             .block(
                 Block::bordered()
                     .title_top("[0] Pending")
+                    .title_bottom(keybinds)
                     .border_style(style),
             );
 

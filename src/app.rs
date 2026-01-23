@@ -35,7 +35,14 @@ impl App {
 
     pub fn on_key_press(&mut self, key: char) {
         // pending tasks panel focused
-        if self.task_panel_state.focused {}
+        if self.task_panel_state.focused {
+            if key == 'k' {
+                self.task_panel_state.decrement_selection();
+            }
+            if key == 'j' {
+                self.task_panel_state.increment_selection();
+            }
+        }
 
         // completed tasks panel focused
         if self.comp_panel_state.focused {}

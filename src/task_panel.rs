@@ -1,3 +1,5 @@
+use std::default;
+
 use crate::{panel_state::PanelState, task::Task};
 use ratatui::{
     style::{Color, Modifier, Style, Stylize},
@@ -11,15 +13,18 @@ pub struct TaskPanelState {
 
 impl TaskPanelState {
     pub fn new(focused: bool) -> TaskPanelState {
+        let mut list_state = ListState::default();
+        list_state.select(Some(0));
+
         TaskPanelState {
             focused,
-            list_state: ListState::default(),
+            list_state,
         }
     }
 
     pub fn get_panel_style(&self) -> Style {
         let style = if self.focused {
-            Style::default().white()
+            Style::default().white().not_dim()
         } else {
             Style::default().gray().dim()
         };
@@ -53,12 +58,22 @@ impl<'a> StatefulWidget for TaskPanel<'a> {
             .map(|task| ListItem::new(task.name.as_str()))
             .collect();
 
-        let mut content = List::new(items);
-
         let style = state.get_panel_style();
-        content = content.style(style);
-        content = content.block(Block::bordered().title_top("[0] Pending"));
-        content = content.highlight_style(Style::default().white().add_modifier(Modifier::BOLD));
+        let content = List::new(items)
+            .style(Style::default().gray().dim())
+            .highlight_style(
+                Style::default()
+                    .bg(Color::White)
+                    .fg(Color::Black)
+                    .not_dim()
+                    .add_modifier(Modifier::BOLD)
+                    .remove_modifier(Modifier::DIM),
+            )
+            .block(
+                Block::bordered()
+                    .title_top("[0] Pending")
+                    .border_style(style),
+            );
 
         StatefulWidget::render(content, area, buf, &mut state.list_state);
     }

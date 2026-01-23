@@ -33,6 +33,9 @@ fn app(terminal: &mut DefaultTerminal) -> std::io::Result<()> {
             Ok(event) => match event {
                 Event::Key(key_event) => match key_event.code {
                     KeyCode::Char('q') => break Ok(()),
+                    KeyCode::Char(c) => {
+                        app.on_key_press(c);
+                    }
                     _ => {}
                 },
                 _ => {}

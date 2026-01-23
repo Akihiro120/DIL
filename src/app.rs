@@ -1,16 +1,20 @@
 use ratatui::{
     Frame,
+    crossterm::event::KeyCode,
     layout::{Constraint, Direction, Layout},
 };
 
 use crate::{
-    completed_panel::CompletedPanel, description_panel::DescriptionPanel, panel_state::PanelState,
-    task_panel::TaskPanel, task_storage::TaskStorage,
+    completed_panel::CompletedPanel,
+    description_panel::DescriptionPanel,
+    panel_state::PanelState,
+    task_panel::{TaskPanel, TaskPanelState},
+    task_storage::TaskStorage,
 };
 
 pub struct App {
     task_storage: TaskStorage,
-    task_panel_state: PanelState,
+    task_panel_state: TaskPanelState,
     comp_panel_state: PanelState,
     desc_panel_state: PanelState,
 }
@@ -19,7 +23,7 @@ impl App {
     pub fn new() -> std::io::Result<Self> {
         let mut app = Self {
             task_storage: TaskStorage::new(),
-            task_panel_state: PanelState::new(true),
+            task_panel_state: TaskPanelState::new(true),
             comp_panel_state: PanelState::new(false),
             desc_panel_state: PanelState::new(true),
         };
@@ -27,6 +31,36 @@ impl App {
         app.task_storage.load()?;
 
         Ok(app)
+    }
+
+    pub fn on_key_press(&mut self, key: char) {
+        // pending tasks panel focused
+        if self.task_panel_state.focused {}
+
+        // completed tasks panel focused
+        if self.comp_panel_state.focused {}
+
+        // toggle between
+        if key.is_digit(10) {
+            if let Some(digit) = key.to_digit(10) {
+                if digit == 0 {
+                    self.focus_task_panel();
+                }
+                if digit == 1 {
+                    self.focus_comp_panel();
+                }
+            }
+        }
+    }
+
+    fn focus_task_panel(&mut self) {
+        self.task_panel_state.focused = true;
+        self.comp_panel_state.focused = false;
+    }
+
+    fn focus_comp_panel(&mut self) {
+        self.task_panel_state.focused = false;
+        self.comp_panel_state.focused = true;
     }
 
     pub fn render(&mut self, frame: &mut Frame) {

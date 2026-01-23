@@ -25,7 +25,7 @@ impl StatefulWidget for DescriptionPanel {
 
         let style = state.get_panel_style();
         content = content.style(style);
-        content = content.block(Block::bordered().title_top("[1] Tasks"));
+        content = content.block(Block::bordered().title_top("Task Description"));
 
         Widget::render(content, area, buf);
     }
